@@ -50,55 +50,15 @@ button, input { font: inherit; }
 .brand {
   display: flex;
   align-items: center;
-  gap: 14px;
 }
 
-.brand-mark {
-  width: 58px;
-  height: 58px;
-  position: relative;
-  color: var(--accent);
-  display: grid;
-  place-items: center;
+.brand-logo {
+  display: block;
+  width: 255px;
+  height: auto;
+  max-height: 58px;
+  object-fit: contain;
 }
-
-.globe {
-  font-size: 55px;
-  line-height: 1;
-  font-weight: 300;
-}
-
-.magnifier {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border: 4px solid var(--accent);
-  border-radius: 50%;
-  right: 1px;
-  bottom: 7px;
-  background: var(--bg);
-}
-
-.magnifier::after {
-  content: "";
-  position: absolute;
-  width: 11px;
-  height: 4px;
-  background: var(--accent);
-  transform: rotate(48deg);
-  right: -8px;
-  bottom: -5px;
-  border-radius: 4px;
-}
-
-.brand-text {
-  font-size: 36px;
-  font-weight: 800;
-  letter-spacing: -1.2px;
-}
-
-.brand-text .whois { color: #f4f4f4; }
-.brand-text .choice { color: var(--accent); margin-left: 9px; }
 
 .main-content {
   flex: 1;
@@ -371,10 +331,7 @@ button, input { font: inherit; }
 
 @media (max-width: 720px) {
   .header-inner { width: calc(100% - 30px); height: 78px; }
-  .brand-mark { width: 44px; height: 44px; }
-  .globe { font-size: 43px; }
-  .brand-text { font-size: 26px; }
-  .brand-text .choice { margin-left: 5px; }
+  .brand-logo { width: 190px; max-height: 48px; }
 
   .hero { padding-top: 38px; }
   .hero h1 { font-size: 43px; }

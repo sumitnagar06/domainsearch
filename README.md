@@ -32,3 +32,5 @@ Then redeploy.
 npm install
 npm run dev
 ```
+
+- Supplied WHOIS CHOICE logo used in the top header (`/public/whoischoice-logo.png`).

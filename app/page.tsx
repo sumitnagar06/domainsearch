@@ -6,14 +6,11 @@ export default function Home() {
       <header className="site-header">
         <div className="header-inner">
           <div className="brand" aria-label="WHOIS CHOICE">
-            <div className="brand-mark" aria-hidden="true">
-              <span className="globe">◎</span>
-              <span className="magnifier" />
-            </div>
-            <div className="brand-text">
-              <span className="whois">WHOIS</span>
-              <span className="choice">CHOICE</span>
-            </div>
+            <img
+              src="/whoischoice-logo.png"
+              alt="Whois Choice"
+              className="brand-logo"
+            />
           </div>
         </div>
       </header>
