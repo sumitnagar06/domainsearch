@@ -34,3 +34,26 @@ npm run dev
 ```
 
 - Supplied WHOIS CHOICE logo used in the top header (`/public/whoischoice-logo.png`).
+
+
+## Domain Registration Enquiry Form
+
+When a searched domain is available, clicking **Register Domain ↗** opens a popup form with:
+- Name
+- Email
+- Contact No.
+- Address
+- Domain (automatically filled from the available domain result)
+
+The submitted enquiry is emailed to `sumitnagar06@gmail.com`. Configure SMTP credentials in `.env.local` using the variables shown in `.env.example`.
+
+Example:
+```env
+SMTP_HOST=smtp.yourmailserver.com
+SMTP_PORT=587
+SMTP_USER=your-smtp-username
+SMTP_PASSWORD=your-smtp-password
+SMTP_FROM="Whois Choice <your-smtp-username>"
+```
+
+For Gmail/Google Workspace SMTP, use an App Password rather than your normal account password when SMTP authentication requires it.

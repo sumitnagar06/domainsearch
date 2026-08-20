@@ -357,3 +357,187 @@ button, input { font: inherit; }
   .info-row:nth-child(odd) { border-right: 0; }
   .site-footer { font-size: 14px; }
 }
+
+
+/* Domain registration modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, .78);
+  backdrop-filter: blur(5px);
+}
+
+.register-modal {
+  position: relative;
+  width: min(620px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 32px;
+  border: 1px solid #33404b;
+  border-radius: 18px;
+  background: #0d141c;
+  box-shadow: 0 28px 90px rgba(0,0,0,.55);
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #35414c;
+  border-radius: 50%;
+  background: #111a23;
+  color: #d9dee3;
+  font-size: 27px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-close:hover { background: #18232d; color: #fff; }
+
+.modal-header {
+  padding-right: 45px;
+  margin-bottom: 24px;
+}
+
+.modal-eyebrow {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.15;
+}
+
+.modal-header p {
+  margin: 10px 0 0;
+  color: #aeb7c0;
+  line-height: 1.55;
+}
+
+.modal-header strong { color: #fff; }
+
+.registration-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 17px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-field-full { grid-column: 1 / -1; }
+
+.form-field label {
+  color: #e2e7eb;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  border: 1px solid #36424e;
+  border-radius: 9px;
+  outline: none;
+  background: #111a23;
+  color: #fff;
+  padding: 12px 13px;
+}
+
+.form-field input { height: 47px; }
+.form-field textarea { resize: vertical; min-height: 100px; }
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(131,179,30,.12);
+}
+
+.form-field input[readonly] {
+  color: var(--accent);
+  background: rgba(131,179,30,.045);
+}
+
+.form-error {
+  grid-column: 1 / -1;
+  padding: 11px 13px;
+  border: 1px solid #67323c;
+  border-radius: 8px;
+  background: #301a20;
+  color: #ffb6c0;
+  font-size: 14px;
+}
+
+.modal-submit {
+  grid-column: 1 / -1;
+  min-height: 49px;
+  margin-top: 2px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.modal-submit:hover { background: #94c724; }
+.modal-submit:disabled { opacity: .65; cursor: wait; }
+
+.success-state {
+  padding: 30px 8px 10px;
+  text-align: center;
+}
+
+.success-icon {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.success-state h2 {
+  margin: 0;
+  font-size: 27px;
+}
+
+.success-state p {
+  max-width: 470px;
+  margin: 12px auto 24px;
+  color: #b7c0c8;
+  line-height: 1.6;
+}
+
+.success-state .modal-submit {
+  width: 140px;
+}
+
+@media (max-width: 620px) {
+  .modal-backdrop { padding: 12px; }
+  .register-modal { padding: 25px 18px; max-height: calc(100vh - 24px); }
+  .modal-header h2 { font-size: 25px; }
+  .registration-form { grid-template-columns: 1fr; }
+  .form-field-full { grid-column: auto; }
+  .form-error, .modal-submit { grid-column: auto; }
+}

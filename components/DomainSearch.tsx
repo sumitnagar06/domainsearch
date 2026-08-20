@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import { FormEvent, useState } from "react";
 
@@ -17,11 +17,27 @@ type Result = {
   } | null;
 };
 
+type RegistrationForm = {
+  name: string;
+  email: string;
+  contactNo: string;
+  address: string;
+};
+
 export default function DomainSearch() {
   const [domain, setDomain] = useState("");
   const [result, setResult] = useState<Result | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [form, setForm] = useState<RegistrationForm>({
+    name: "",
+    email: "",
+    contactNo: "",
+    address: "",
+  });
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
 
   async function search(e: FormEvent) {
     e.preventDefault();
@@ -46,6 +62,56 @@ export default function DomainSearch() {
     } finally {
       setLoading(false);
     }
+  }
+
+  function openRegistration() {
+    setSubmitMessage("");
+    setShowRegisterModal(true);
+  }
+
+  function closeRegistration() {
+    if (!submitLoading) setShowRegisterModal(false);
+  }
+
+  async function submitRegistration(e: FormEvent) {
+    e.preventDefault();
+    setSubmitMessage("");
+
+    if (!result?.domain) {
+      setSubmitMessage("Domain information is missing. Please search again.");
+      return;
+    }
+
+    setSubmitLoading(true);
+    try {
+      const response = await fetch("/api/domain/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          domain: result.domain,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Unable to submit registration request.");
+      }
+
+      setSubmitMessage("success");
+      setForm({ name: "", email: "", contactNo: "", address: "" });
+    } catch (err) {
+      setSubmitMessage(
+        err instanceof Error ? err.message : "Something went wrong."
+      );
+    } finally {
+      setSubmitLoading(false);
+    }
+  }
+
+  function updateForm(field: keyof RegistrationForm, value: string) {
+    setForm((current) => ({ ...current, [field]: value }));
   }
 
   return (
@@ -94,7 +160,11 @@ export default function DomainSearch() {
                 <strong>Good news! This domain is available for registration.</strong>
                 <p>Register it before someone else does.</p>
               </div>
-              <button type="button" className="register-btn">
+              <button
+                type="button"
+                className="register-btn"
+                onClick={openRegistration}
+              >
                 Register Domain <span>↗</span>
               </button>
             </div>
@@ -133,6 +203,139 @@ export default function DomainSearch() {
               </div>
             </div>
           )}
+        </div>
+      )}
+
+      {showRegisterModal && (
+        <div
+          className="modal-backdrop"
+          role="presentation"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) closeRegistration();
+          }}
+        >
+          <div
+            className="register-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="register-domain-title"
+          >
+            <button
+              type="button"
+              className="modal-close"
+              onClick={closeRegistration}
+              aria-label="Close registration form"
+              disabled={submitLoading}
+            >
+              ×
+            </button>
+
+            {submitMessage === "success" ? (
+              <div className="success-state">
+                <div className="success-icon">✓</div>
+                <h2>Registration Request Sent</h2>
+                <p>
+                  Thank you. Your request for <strong>{result?.domain}</strong>{" "}
+                  has been sent to our team. We will contact you shortly.
+                </p>
+                <button
+                  type="button"
+                  className="modal-submit"
+                  onClick={closeRegistration}
+                >
+                  Done
+                </button>
+              </div>
+            ) : (
+              <>
+                <div className="modal-header">
+                  <span className="modal-eyebrow">DOMAIN REGISTRATION</span>
+                  <h2 id="register-domain-title">Register Your Domain</h2>
+                  <p>
+                    Complete the form below and our team will contact you about
+                    registering <strong>{result?.domain}</strong>.
+                  </p>
+                </div>
+
+                <form className="registration-form" onSubmit={submitRegistration}>
+                  <div className="form-field">
+                    <label htmlFor="register-name">Name *</label>
+                    <input
+                      id="register-name"
+                      type="text"
+                      value={form.name}
+                      onChange={(e) => updateForm("name", e.target.value)}
+                      placeholder="Your full name"
+                      autoComplete="name"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="register-email">Email *</label>
+                    <input
+                      id="register-email"
+                      type="email"
+                      value={form.email}
+                      onChange={(e) => updateForm("email", e.target.value)}
+                      placeholder="you@example.com"
+                      autoComplete="email"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="register-contact">Contact No. *</label>
+                    <input
+                      id="register-contact"
+                      type="tel"
+                      value={form.contactNo}
+                      onChange={(e) => updateForm("contactNo", e.target.value)}
+                      placeholder="Your contact number"
+                      autoComplete="tel"
+                      inputMode="tel"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="register-domain">Domain</label>
+                    <input
+                      id="register-domain"
+                      type="text"
+                      value={result?.domain || ""}
+                      readOnly
+                    />
+                  </div>
+
+                  <div className="form-field form-field-full">
+                    <label htmlFor="register-address">Address *</label>
+                    <textarea
+                      id="register-address"
+                      value={form.address}
+                      onChange={(e) => updateForm("address", e.target.value)}
+                      placeholder="Your complete address"
+                      rows={4}
+                      autoComplete="street-address"
+                      required
+                    />
+                  </div>
+
+                  {submitMessage && submitMessage !== "success" && (
+                    <div className="form-error">{submitMessage}</div>
+                  )}
+
+                  <button
+                    type="submit"
+                    className="modal-submit"
+                    disabled={submitLoading}
+                  >
+                    {submitLoading ? "Sending Request..." : "Submit Registration Request"}
+                  </button>
+                </form>
+              </>
+            )}
+          </div>
         </div>
       )}
     </div>
