@@ -541,3 +541,73 @@ button, input { font: inherit; }
   .form-field-full { grid-column: auto; }
   .form-error, .modal-submit { grid-column: auto; }
 }
+
+/* SEO Audit Tool */
+.header-inner { justify-content: space-between; gap: 24px; }
+.header-tool-link, .tool-back {
+  color: #e8edf1;
+  text-decoration: none;
+  border: 1px solid #35414c;
+  background: #111a23;
+  border-radius: 9px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: .2s ease;
+}
+.header-tool-link:hover, .tool-back:hover { color: var(--accent); border-color: var(--accent); }
+.tool-eyebrow { display: inline-block; margin-bottom: 10px; color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: 1.6px; }
+.seo-hero { padding-top: 38px; }
+.seo-audit-area { width: 100%; }
+.seo-audit-search { display: flex; width: min(890px, 100%); margin: 0 auto; gap: 4px; }
+.seo-audit-search input { flex: 1; min-width: 0; height: 68px; padding: 0 25px; color: #fff; background: #0d141c; border: 1px solid #36404b; border-radius: 10px 0 0 10px; outline: none; font-size: 18px; }
+.seo-audit-search input:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(131,179,30,.12); }
+.seo-audit-search button { width: 205px; border: 0; border-radius: 0 10px 10px 0; background: var(--accent); color: #fff; font-weight: 700; font-size: 18px; cursor: pointer; }
+.seo-audit-search button:hover { background: #94c724; }
+.seo-audit-search button:disabled { opacity: .65; cursor: wait; }
+.seo-helper { max-width: 890px; }
+.seo-results { margin-top: 28px; text-align: left; }
+.seo-overview-card { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 26px; border: 1px solid #29333d; border-radius: 16px; background: linear-gradient(145deg,#0c1219,#090e14); box-shadow: 0 16px 50px rgba(0,0,0,.22); }
+.seo-score-wrap { display: flex; align-items: center; gap: 20px; min-width: 0; }
+.seo-score { width: 116px; height: 116px; flex: 0 0 116px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-direction: column; border: 7px solid #36404b; background: #0a1017; }
+.seo-score.good { border-color: var(--accent); }
+.seo-score.average { border-color: #d9a441; }
+.seo-score.poor { border-color: #d95b67; }
+.seo-score span { font-size: 34px; line-height: 1; font-weight: 850; }
+.seo-score small { color: #9da7b0; margin-top: 5px; }
+.seo-score-wrap h2 { margin: 0 0 5px; font-size: 26px; overflow-wrap: anywhere; }
+.seo-result-url { color: #9eb4c5; font-size: 14px; overflow-wrap: anywhere; }
+.seo-result-url:hover { color: var(--accent); }
+.seo-summary-grid { display: grid; grid-template-columns: repeat(3, 100px); gap: 10px; }
+.seo-summary-item { min-height: 82px; border: 1px solid #29333d; border-radius: 11px; background: rgba(255,255,255,.018); display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.seo-summary-item strong { font-size: 27px; }
+.seo-summary-item span { margin-top: 3px; color: #9fa8b0; font-size: 13px; }
+.seo-summary-item.pass strong { color: var(--accent); }
+.seo-summary-item.warning strong { color: #e1b04d; }
+.seo-summary-item.fail strong { color: #ff8995; }
+.seo-stats-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 10px; margin-top: 14px; }
+.seo-stat { padding: 16px; border: 1px solid #26313b; border-radius: 11px; background: rgba(12,18,25,.5); }
+.seo-stat span { display: block; color: #9fa8b0; font-size: 12px; text-transform: uppercase; letter-spacing: .7px; }
+.seo-stat strong { display: block; margin-top: 5px; font-size: 18px; }
+.seo-category-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 12px; }
+.seo-category-tabs button { border: 1px solid #33404b; border-radius: 999px; background: #101821; color: #bac2c9; padding: 9px 13px; cursor: pointer; font-size: 13px; }
+.seo-category-tabs button:hover, .seo-category-tabs button.active { border-color: var(--accent); color: #fff; background: rgba(131,179,30,.09); }
+.seo-check-list { display: grid; gap: 9px; }
+.seo-check { display: flex; gap: 14px; padding: 17px; border: 1px solid #26313b; border-radius: 11px; background: rgba(12,18,25,.5); }
+.seo-check-icon { width: 34px; height: 34px; flex: 0 0 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 850; }
+.seo-check-icon.pass { background: rgba(131,179,30,.13); color: var(--accent); }
+.seo-check-icon.warning { background: rgba(225,176,77,.12); color: #e1b04d; }
+.seo-check-icon.fail { background: rgba(255,105,119,.12); color: #ff8995; }
+.seo-check-content { min-width: 0; flex: 1; }
+.seo-check-title-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.seo-check-title-row h3 { margin: 0; font-size: 16px; }
+.seo-check-content p { margin: 5px 0 0; color: #aeb7c0; line-height: 1.5; font-size: 14px; }
+.seo-check-details { margin-top: 8px; padding: 9px 10px; border-radius: 7px; background: #0a1016; color: #d6dde2; font-size: 12px; overflow-wrap: anywhere; }
+.seo-badge { flex: 0 0 auto; border-radius: 999px; padding: 4px 8px; font-size: 11px; font-weight: 800; }
+.seo-badge.pass { color: var(--accent); background: rgba(131,179,30,.1); }
+.seo-badge.warning { color: #e1b04d; background: rgba(225,176,77,.1); }
+.seo-badge.fail { color: #ff8995; background: rgba(255,105,119,.1); }
+.seo-disclaimer { margin-top: 14px; padding: 14px 16px; border: 1px solid #29333d; border-radius: 10px; color: #8f9aa4; font-size: 12px; line-height: 1.55; }
+.seo-disclaimer strong { color: #c9d0d6; }
+@media (max-width: 900px) { .seo-overview-card { flex-direction: column; align-items: stretch; } .seo-summary-grid { grid-template-columns: repeat(3,1fr); } .seo-stats-grid { grid-template-columns: repeat(3,1fr); } }
+@media (max-width: 720px) { .header-inner { height: auto; min-height: 78px; padding: 12px 0; } .header-tool-link, .tool-back { font-size: 12px; padding: 8px 10px; } .seo-audit-search { display: grid; gap: 8px; } .seo-audit-search input, .seo-audit-search button { width: 100%; height: 58px; border-radius: 9px; } .seo-overview-card { padding: 18px; } .seo-score { width: 90px; height: 90px; flex-basis: 90px; border-width: 5px; } .seo-score span { font-size: 27px; } .seo-score-wrap h2 { font-size: 21px; } .seo-summary-grid { grid-template-columns: repeat(3,1fr); } .seo-stats-grid { grid-template-columns: repeat(2,1fr); } .seo-check-title-row { align-items: flex-start; flex-direction: column; gap: 6px; } }

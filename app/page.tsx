@@ -1,3 +1,4 @@
+import Link from "next/link";
 import DomainSearch from "@/components/DomainSearch";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
               className="brand-logo"
             />
           </div>
+          <Link href="/seo-audit" className="header-tool-link">SEO Audit Tool ↗</Link>
         </div>
       </header>
 
